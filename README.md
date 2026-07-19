@@ -31,7 +31,7 @@ Gemini generates an answer using only the retrieved code
 - **Embeddings:** sentence-transformers (`all-MiniLM-L6-v2`)
 - **Vector search:** FAISS (`IndexFlatIP`, cosine similarity via normalized vectors)
 - **LLM:** Gemini API (`google-genai`)
-- **Frontend:** Jinja2 templates + vanilla JS, no framework
+- **Frontend:** Jinja2 templates + vanilla JS
 
 ## Repo structure
 
