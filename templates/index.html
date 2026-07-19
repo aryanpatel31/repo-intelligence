@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repository Intelligence Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="eyebrow">// repository intelligence platform</div>
+    <h1>Ask your codebase anything</h1>
+    <p class="subtitle">Paste a public GitHub repo. Semantic search + an LLM do the rest.</p>
+  </header>
+
+  <form id="index-form">
+    <div class="prompt-input">
+      <span class="prompt-symbol">repo &gt;</span>
+      <input type="text" id="repo-url" name="repo_url" placeholder="https://github.com/user/project.git" required>
+      <button type="submit" id="index-btn">Index</button>
+    </div>
+  </form>
+
+  <div id="messages"></div>
+
+  <div class="pipeline" id="pipeline" style="display: none;">
+    <div class="pipeline-step"><span class="pipeline-dot"></span>clone</div>
+    <div class="pipeline-line"></div>
+    <div class="pipeline-step"><span class="pipeline-dot"></span>parse</div>
+    <div class="pipeline-line"></div>
+    <div class="pipeline-step"><span class="pipeline-dot"></span>chunk</div>
+    <div class="pipeline-line"></div>
+    <div class="pipeline-step"><span class="pipeline-dot"></span>embed</div>
+    <div class="pipeline-line"></div>
+    <div class="pipeline-step"><span class="pipeline-dot"></span>index</div>
+  </div>
+
+  <div id="ask-section">
+    <div class="repo-context">
+      Currently indexed: <span id="repo-name-label"></span>
+    </div>
+
+    <form id="ask-form">
+      <div class="prompt-input">
+        <span class="prompt-symbol">ask &gt;</span>
+        <input type="text" id="question-input" name="question" placeholder="What does this library do?" required>
+        <button type="submit" id="ask-btn">Ask</button>
+      </div>
+    </form>
+
+    <div id="qa-history"></div>
+  </div>
+</div>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
