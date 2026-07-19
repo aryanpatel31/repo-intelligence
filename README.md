@@ -1,6 +1,6 @@
 # Repository Intelligence Platform
 
-Paste a public GitHub repo, ask questions about it in plain English, get answers grounded in the actual code — not just an LLM guessing from its training data.
+Paste a public GitHub repo, ask questions about it in plain English, get answers grounded in the actual code, not just an LLM guessing from its training data.
 
 ## How it works
 
@@ -71,7 +71,7 @@ conda activate repo-intelligence
 pip install -r requirements.txt
 ```
 
-Get a free Gemini API key at [aistudio.google.com/apikey](https://aistudio.google.com/apikey) — no credit card needed.
+Get a free Gemini API key at [aistudio.google.com/apikey](https://aistudio.google.com/apikey).
 
 Create a `.env` file in the project root:
 ```
@@ -90,11 +90,11 @@ Open `http://127.0.0.1:8000`, paste a repo URL, hit Index, then ask away.
 
 **Chunking snaps to line boundaries.** Naive fixed-size chunking will cut a function definition in half if it happens to land on a boundary. Chunks here cap at ~1500 characters but always break on a full line, with ~200 characters of overlap between adjacent chunks so nothing important gets orphaned at a boundary.
 
-**FAISS metadata lives outside the index.** FAISS only stores raw vectors — it doesn't know about file paths or source text. A separate pickled list tracks that mapping by position: index position `i` in FAISS corresponds to position `i` in the metadata list.
+**FAISS metadata lives outside the index.** FAISS only stores raw vectors, it doesn't know about file paths or source text. A separate pickled list tracks that mapping by position: index position `i` in FAISS corresponds to position `i` in the metadata list.
 
 **Model is `gemini-flash-latest`, not pinned.** Two Gemini model names got deprecated mid-build (`gemini-2.5-flash`, then `gemini-2.5-flash-lite`). Using Google's auto-updating alias means the app doesn't break the next time a model generation gets retired.
 
-**Cloned repos get deleted after indexing.** Once the content's embedded into FAISS, the raw clone isn't needed anymore — deleting it keeps disk usage from growing unbounded as more repos get indexed.
+**Cloned repos get deleted after indexing.** Once the content's embedded into FAISS, the raw clone isn't needed anymore, deleting it keeps disk usage from growing unbounded as more repos get indexed.
 
 ## Not included (yet)
 
